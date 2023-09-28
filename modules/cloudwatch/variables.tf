@@ -1,0 +1,1 @@
+variable "log_group_name_application" {}
