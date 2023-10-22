@@ -10,3 +10,4 @@ variable "task_definition_application" {}
 variable "ecr_repo_web" {}
 variable "ecr_repo_app" {}
 variable "log_group_name_application" {}
+variable "conainer_insight_enabled" {}

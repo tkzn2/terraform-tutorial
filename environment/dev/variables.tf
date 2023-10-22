@@ -68,3 +68,34 @@ variable "deletion_protection" {
     type = bool
     description = "If this parameter is set to true, terraform cannot destroy this resource."
 }
+
+
+####################################################
+##   ECS
+####################################################
+variable "conainer_insight_enabled" {
+    type = bool
+}
+
+####################################################
+##   Deploy
+####################################################
+variable "webapp_repo_name" {
+    type = string
+    description = "Your webapp repository name."
+}
+
+variable "webapp_branch_name" {
+    type = string
+    description = "Your webapp branch name."
+}
+
+variable "taskdef_temp_path" {
+    type = string
+    description = "Your taskdef template path."
+}
+
+variable "appspec_temp_path" {
+    type = string
+    description = "Your appspec template path."
+}

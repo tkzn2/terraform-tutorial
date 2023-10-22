@@ -28,6 +28,11 @@ resource "aws_ecs_task_definition" "web" {
 
 resource "aws_ecs_cluster" "web" {
     name = "${var.name_prefix}-cluster-web"
+
+    setting {
+        name = "containerInsights"
+        value = var.conainer_insight_enabled ? "enable" : "disabled"
+    }
 }
 
 resource "aws_ecs_service" "web" {

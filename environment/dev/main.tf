@@ -70,6 +70,7 @@ module "ecs" {
     ecr_repo_web = module.ecr.ecr_repo_web
     ecr_repo_app = module.ecr.ecr_repo_app
     log_group_name_application = local.log_group_name_application
+    conainer_insight_enabled = var.conainer_insight_enabled
 }
 
 module "route53" {
@@ -100,4 +101,19 @@ module "ecr" {
 module "cloudwatch" {
     source = "../../modules/cloudwatch"
     log_group_name_application = local.log_group_name_application
+}
+
+module "deploy" {
+    source = "../../modules/deploy"
+    name_prefix = "${var.system}-${var.env}"
+    webapp_repo_name = var.webapp_repo_name
+    webapp_branch_name = var.webapp_branch_name
+    listner_web_prd_arn = module.alb.listner_blue.arn
+    listner_web_test_arn = module.alb.listner_green.arn
+    tg_web_blue_name = module.alb.target_group_main.name
+    tg_web_green_name = module.alb.target_group_test.name
+    ecs_cluster_name = module.ecs.ecs_cluster_web.name
+    ecs_service_name = module.ecs.ecs_service_web.name
+    taskdef_temp_path = var.taskdef_temp_path
+    appspec_temp_path = var.appspec_temp_path
 }
