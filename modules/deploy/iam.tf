@@ -66,6 +66,14 @@ data "aws_iam_policy_document" "codepipeline" {
         ]
         resources = ["*"]
     }
+
+    statement {
+        effect = "Allow"
+        actions = [
+            "iam:PassRole"
+        ]
+        resources = ["*"]
+    }
 }
 
 resource "aws_iam_role_policy" "codepipeline" {
